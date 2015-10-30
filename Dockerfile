@@ -7,6 +7,9 @@ RUN yum -y update && \
 		nautilus nautilus-open-terminal gedit file-roller samba-client && \
 	yum clean all && rm -rf /tmp/*
 
+# Configure VNC & XRDP
+RUN sed -i 's/twm /gnome-session /g' /home/user/.vnc/xstartup
+
 # Applying Gnome Settings for all users
 RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
 	--type bool  --set /apps/nautilus/preferences/always_use_browser true && \
@@ -32,4 +35,3 @@ RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mand
 	--type bool --set /desktop/gnome/remote_access/enabled true && \
 	gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
 	--type bool --set /desktop/gnome/remote_access/prompt_enabled false
-
