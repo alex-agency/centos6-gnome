@@ -4,7 +4,7 @@ MAINTAINER Alex
 RUN yum -y update && \
 	yum -y groupinstall "Fonts" && \
 	yum -y install gnome-desktop gnome-panel gnome-session gnome-terminal control-center \
-		nautilus nautilus-open-terminal gedit file-roller samba-client && \
+		nautilus nautilus-open-terminal gedit file-roller samba-client gvfs-smb && \
 	yum clean all && rm -rf /tmp/*
 
 # Configure VNC & XRDP
