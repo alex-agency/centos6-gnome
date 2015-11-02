@@ -4,7 +4,7 @@ MAINTAINER Alex
 RUN yum -y update && \
 	yum -y groupinstall "Fonts" && \
 	yum -y install gnome-desktop gnome-panel gnome-session gnome-terminal control-center \
-		nautilus nautilus-open-terminal gedit file-roller samba-client gvfs-smb && \
+		nautilus nautilus-open-terminal gedit file-roller samba-client gvfs-smb xdg-user-dirs && \
 	yum clean all && rm -rf /tmp/*
 
 # Configure VNC & XRDP
@@ -36,5 +36,11 @@ RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mand
 	gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
 	--type bool --set /desktop/gnome/remote_access/prompt_enabled false
 
-# Initializ Gnome profile
-RUN service vncserver start && service vncserver stop
+# Default user
+ENV HOME /home/user
+USER user
+# Creating default user directories
+RUN xdg-user-dirs-update
+
+# Entrypoint
+CMD sudo supervisord
