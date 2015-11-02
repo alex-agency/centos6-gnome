@@ -35,3 +35,6 @@ RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mand
 	--type bool --set /desktop/gnome/remote_access/enabled true && \
 	gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
 	--type bool --set /desktop/gnome/remote_access/prompt_enabled false
+
+# Initializ Gnome profile
+RUN service vncserver start && service vncserver stop
