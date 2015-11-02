@@ -30,7 +30,7 @@ cd /c/Users/<WINDOWS USER>
 
 Run **alexagency/centos6-gnome** container from [Docker Hub](https://hub.docker.com/r/alexagency/centos6-gnome/):
 ```
-docker run -it --rm -p 5900:5900 -p 3389:3389 -v alexagency/centos6-gnome
+docker run -it --rm -p 5900:5900 -p 3389:3389 alexagency/centos6-gnome
 ```
 
 Open via VNC or RDP client using virtual maschine's ip-address:
