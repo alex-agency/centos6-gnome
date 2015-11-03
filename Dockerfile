@@ -38,6 +38,7 @@ RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mand
 
 # Default user
 ENV HOME /home/user
+WORKDIR /home/user
 USER user
 # Creating default user directories
 RUN xdg-user-dirs-update
